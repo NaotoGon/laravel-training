@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = ['pet_id'];
+
+    public function comments(){
+        return $this->hasMany("App\Comment");
+    }
 }
