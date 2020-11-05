@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Pet;
+use App\Http\Requests\CreatePetRequest;
 
 class SampleFormController extends Controller
 {
@@ -19,8 +20,10 @@ class SampleFormController extends Controller
         return view("sample_show", compact("pet"));
     }
 
-    public function store(Pet $pet, Request $request){
-
+    public function store(CreatePetRequest $request, Pet $pet)
+    {
+        $pet = $request->validated()['pet'];
+        
         return DB::transaction(function () use ($pet, $request){
             $pet = new Pet();
 
