@@ -1,4 +1,19 @@
-<h2>Pet List</h2>
+@extends("layout.master")
+
+@section("text", "継承テスト")
+
+@section("content")
+  <p>endsection練習</p>
+@endsection
+
+<div class="attribute-wrapper">
+    @component('components.attribute',
+                ['attributeName'=>__("氏名"),
+                    'required'=>true,
+                    'attributeInfo'=> __("こんにちは")])
+    @endcomponent
+</div>
+
 <form method="POST" action="/form/delete">
     @csrf
     <input type="submit" name="delete" value="削除">
