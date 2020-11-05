@@ -15,7 +15,7 @@ class CheckName
      */
     public function handle($request, Closure $next)
     {
-        if ($request->name == "aaa"){
+        if ($request->pet == "aaa"){
             return redirect("/form/index");
         }
 
