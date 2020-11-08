@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Pet;
+use App\Http\Requests\CreatePetRequest;
 
 class SampleFormController extends Controller
 {
@@ -18,10 +20,11 @@ class SampleFormController extends Controller
         return view("sample_show", compact("pet"));
     }
 
-    public function store(Request $request){
-
-        DB::beginTransaction();
-        try {
+    public function store(CreatePetRequest $request, Pet $pet)
+    {
+        $pet = $request->validated()['pet'];
+        
+        return DB::transaction(function () use ($pet, $request){
             $pet = new Pet();
 
             $pet->name = $request->pet;
@@ -31,9 +34,7 @@ class SampleFormController extends Controller
             $pet->save();
 
             return redirect("/form/index");
-        } catch (\Exception $e) {
-            DB::rollback();
-        }
+        });
     }
 
     public function delete(Request $request){

@@ -19,7 +19,7 @@ Route::get("/form/index", "SampleFormController@index");
 
 Route::get("/form/show/{id}", "SampleFormController@show");
 
-Route::post("/form/store", "SampleFormController@store");
+Route::post("/form/store", "SampleFormController@store")->middleware("checkname");
 
 Route::post('/form/delete', 'SampleFormController@delete');
 
