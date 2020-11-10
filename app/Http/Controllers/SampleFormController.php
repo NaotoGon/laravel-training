@@ -54,4 +54,14 @@ class SampleFormController extends Controller
         ]);
         return redirect("/form/index");
     }
+
+    public function ajax()
+    {
+        return view("sample");
+    }
+
+    public function ajax2()
+    {
+        return view("sample2");
+    }
 }
