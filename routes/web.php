@@ -24,3 +24,11 @@ Route::post("/form/store", "SampleFormController@store")->middleware("checkname"
 Route::post('/form/delete', 'SampleFormController@delete');
 
 Route::post("/form/update", "SampleFormController@update");
+
+//サービスプロバイダ確認
+// $name = app()->make("myName");
+// dd($name);
+
+Route::get("/ajax", "SampleFormController@ajax");
+
+Route::get("/ajax2", "SampleFormController@ajax2");
